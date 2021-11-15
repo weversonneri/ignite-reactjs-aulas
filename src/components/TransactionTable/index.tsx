@@ -1,14 +1,6 @@
 import { useTransactions } from '../../hooks/useTransactions';
+import { formatCurrency, formatDate } from '../../utils';
 import { Container } from './styles';
-
-interface Transaction {
-  id: number;
-  title: string;
-  amount: number;
-  type: string;
-  category: string;
-  createdAt: string;
-}
 
 export function TransactionTable() {
   const { transactions } = useTransactions();
@@ -30,18 +22,10 @@ export function TransactionTable() {
             <tr key={transaction.id}>
               <td>{transaction.title}</td>
               <td className={transaction.type}>
-                {transaction.type === 'withdraw' && '- '}
-                {new Intl.NumberFormat('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL'
-                }).format(transaction.amount)}
+                {formatCurrency(transaction.amount)}
               </td>
               <td>{transaction.category}</td>
-              <td>
-                {new Intl.DateTimeFormat('pt-BR').format(
-                  new Date(transaction.createdAt)
-                )}
-              </td>
+              <td>{formatDate(transaction.createdAt)}</td>
             </tr>
           ))}
         </tbody>

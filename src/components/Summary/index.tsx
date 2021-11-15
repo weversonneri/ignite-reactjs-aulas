@@ -1,10 +1,12 @@
 import incomeIgm from '../../assets/income.svg';
 import outcomeIgm from '../../assets/outcome.svg';
 import totalIgm from '../../assets/total.svg';
+import { useTransactions } from '../../hooks/useTransactions';
 
 import { Container } from './styles';
 
 export function Summary() {
+  const { transactions } = useTransactions();
   return (
     <Container>
       <div>

@@ -8,3 +8,10 @@ export function formatCurrency(transaction: number) {
 export function formatDate(date: string) {
   return new Intl.DateTimeFormat('pt-BR').format(new Date(date));
 }
+
+export function formatShortDate(date: number) {
+  return new Intl.DateTimeFormat('pt-BR', {
+    month: 'long',
+    day: 'numeric'
+  }).format(date);
+}

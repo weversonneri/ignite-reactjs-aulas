@@ -4,11 +4,11 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 
 import { RichText } from 'prismic-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { getPrismicClient } from '../../../services/prismic';
 
 import styles from '../post.module.scss';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 interface PostPreviewProps {
 	post: {
@@ -56,12 +56,10 @@ export default function Post({ post }: PostPreviewProps) {
 	);
 }
 
-export const getStaticPaths = () => {
-	return {
-		paths: [],
-		fallback: 'blocking',
-	};
-};
+export const getStaticPaths = () => ({
+	paths: [],
+	fallback: 'blocking',
+});
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	const { slug } = params;
@@ -76,11 +74,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 		content: RichText.asHtml(response.data.content.splice(0, 3)),
 		updatedAt: new Date(response.last_publication_date).toLocaleDateString(
 			'pt-BR',
-			{
-				day: '2-digit',
-				month: 'long',
-				year: 'numeric',
-			}
+			{ day: '2-digit', month: 'long', year: 'numeric' }
 		),
 	};
 

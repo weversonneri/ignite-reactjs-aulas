@@ -1,13 +1,21 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "node": true
     },
     "extends": [
-        "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended"
+        "airbnb",
+        "plugin:jsx-a11y/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:testing-library/react",
+        "plugin:jest-dom/recommended",
+        "plugin:prettier/recommended"
     ],
+    "globals": {
+        "React": "readonly"
+    },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
@@ -18,25 +26,68 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "react-hooks",
+        "@typescript-eslint",
+        "prettier"
     ],
     "rules": {
-        "indent": [
+        "camelcase": "off",
+        "import/no-duplicates": "off",
+        "react/jsx-props-no-spreading": "off",
+        "prettier/prettier": "error",
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off",
+        "jsx-a11y/anchor-is-valid": [
             "error",
-            "tab"
+            {
+                "components": [
+                    "Link"
+                ],
+                "specialLink": [
+                    "hrefLeft",
+                    "hrefRight"
+                ],
+                "aspects": [
+                    "invalidHref",
+                    "preferButton"
+                ]
+            }
         ],
-        "linebreak-style": [
+        "react/jsx-one-expression-per-line": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "react/require-default-props": "off",
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".tsx"
+                ]
+            }
+        ],
+        "import/prefer-default-export": "off",
+        "import/extensions": [
             "error",
-            "unix"
+            "ignorePackages",
+            {
+                "ts": "never",
+                "tsx": "never"
+            }
         ],
-        "quotes": [
+        "@typescript-eslint/explicit-function-return-type": [
             "error",
-            "single"
+            {
+                "allowExpressions": true
+            }
         ],
-        "semi": [
-            "error",
-            "always"
-        ],
-        "react/react-in-jsx-scope": "off"
+        "@typescript-eslint/camelcase": "off"
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        },
+        "import/resolver": {
+            "typescript": {}
+        }
     }
 }

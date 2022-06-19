@@ -5,8 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest --watchAll",
-    "lint": "next lint"
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "@prismicio/client": "^5.1.0",
